@@ -20,11 +20,11 @@ export const metadata: Metadata = {
   keywords: [],
   authors: [
     {
-      name: "Khushal Agarwal",
-      url: "https://khushalagarwal.me",
+      name: "Vikas Singh",
+      url: "https://portfolio-vdrl.vercel.app/",
     },
   ],
-  creator: "Khushal Agarwal",
+  creator: "Vikas Singh",
   openGraph: {
     type: "website",
     locale: "en_US",

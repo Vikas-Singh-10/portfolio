@@ -4,8 +4,8 @@
   "private": true,
   "type": "module",
   "author": {
-    "name": "Khushal Agarwal",
-    "email": "starkhush5@gmail.com"
+    "name": "Vikas Singh",
+    "email": "vikaskuntal10@gmail.com"
   },
   "scripts": {
     "dev": "next dev",

@@ -1,16 +1,16 @@
 import { Icons } from "@/components/Icons";
 
 export const siteConfig = {
-  name: "Khushal Agarwal | Software Developer",
+  name: "Vikas Singh | Software Developer",
   description:
-    "Khushal Agarwal is a Full Stack Developer who is passionate about building solutions and contributing to open source communities",
-  url: "https://portfolio.khushalagarwal.me",
+    "Vikas Singh is a Full Stack Developer who is passionate about building solutions and contributing to open source communities",
+  url: "https://portfolio-vdrl.vercel.app/",
 
   author: {
-    name: "Khushal Agarwal",
+    name: "Vikas Singh",
     avatar: "/github-profile.png",
     bio: "Software Developer",
-    mail: "starkhush5@gmail.com",
+    mail: "vikaskuntal10@gmail.com",
     description:
       "Experienced software engineer with a strong background in full stack development, dedicated to delivering seamless and efficient web applications.",
   },
@@ -18,19 +18,19 @@ export const siteConfig = {
   links: {
     github: {
       title: "Github",
-      href: "https://github.com/Khushal-ag",
+      href: "https://github.com/Vikas-Singh-10/",
       icon: Icons.Github,
     },
 
     linkedin: {
       title: "Linkedin",
-      href: "https://www.linkedin.com/in/khushal-agarwal",
+      href: "https://www.linkedin.com/in/vikas-singh-336920226/",
       icon: Icons.LinkedIn,
     },
 
     twitter: {
       title: "Twitter",
-      href: "https://twitter.com/starkhush5",
+      href: "https://x.com/VikasKunta38015",
       icon: Icons.Twitter,
     },
   },
