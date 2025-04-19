@@ -3,8 +3,14 @@
 import React from "react";
 import dynamic from "next/dynamic";
 
+// Dynamically import World component with no SSR
 const World = dynamic(() => import("./Globe").then((m) => m.World), {
   ssr: false,
+  loading: () => (
+    <div className="flex h-72 w-full items-center justify-center">
+      <div className="h-32 w-32 animate-spin rounded-full border-b-2 border-t-2 border-gray-900"></div>
+    </div>
+  ),
 });
 
 export const GridGlobe = () => {

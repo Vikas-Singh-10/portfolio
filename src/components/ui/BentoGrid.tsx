@@ -1,10 +1,16 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import animationData from "@/data/confetti.json";
 import { cn } from "@/utils/cn";
 import { IoCopyOutline } from "react-icons/io5";
-import Lottie from "react-lottie";
+import dynamic from "next/dynamic";
+
+// Dynamically import Lottie with no SSR
+const Lottie = dynamic(() => import("react-lottie"), { 
+  ssr: false,
+  loading: () => <div className="h-[200px] w-[400px]" /> 
+});
 
 import MagicButton from "../MagicButton";
 import { BackgroundGradientAnimation } from "./GradientBg";
@@ -49,21 +55,42 @@ export const BentoGridItem = ({
   spareImg?: string;
 }) => {
   const [copied, setCopied] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  const [showLottie, setShowLottie] = useState(false);
   const leftLists = ["NextJs", "ReactJs", "Typescript"];
   const rightLists = ["Golang", "NodeJs", "Docker"];
+  
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (copied) {
+      setShowLottie(true);
+      const timer = setTimeout(() => {
+        setShowLottie(false);
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [copied]);
+
   const defaultOptions = {
-    loop: copied,
-    autoplay: copied,
+    loop: true,
+    autoplay: true,
     animationData: animationData,
     rendererSettings: {
       preserveAspectRatio: "xMidYMid slice",
     },
+    isClickToPauseDisabled: true
   };
 
   const handleCopy = () => {
-    const text = "vikaskuntal10@gmail.com";
-    navigator.clipboard.writeText(text);
-    setCopied(true);
+    if (typeof window !== "undefined") {
+      const text = "vikaskuntal10@gmail.com";
+      navigator.clipboard.writeText(text);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 3000); // Reset after 3 seconds
+    }
   };
 
   return (
@@ -116,7 +143,7 @@ export const BentoGridItem = ({
           <div className="z-10 max-w-96 font-sans text-lg font-bold lg:text-3xl">
             {title}
           </div>
-          {id === 2 && <GridGlobe />}
+          {id === 2 && mounted && <GridGlobe />}
           {id === 3 && (
             <div className="absolute -right-0 flex w-fit gap-1 lg:-right-0 lg:gap-3">
               <div className="flex flex-col gap-2 md:gap-3 lg:gap-3">
@@ -145,15 +172,19 @@ export const BentoGridItem = ({
               </div>
             </div>
           )}
-          {id === 6 && (
+          {id === 6 && mounted && (
             <div className="relative mt-5">
-              <div
-                className={`absolute -bottom-5 right-0 ${copied ? "block" : "block"}`}
-              >
-                <Lottie options={defaultOptions} height={200} width={400} />
+              <div className="absolute -bottom-5 right-0">
+                {showLottie && (
+                  <Lottie
+                    options={defaultOptions}
+                    height={200}
+                    width={400}
+                  />
+                )}
               </div>
               <MagicButton
-                title={copied ? "Email is Copied" : "Copy my email"}
+                title={copied ? "Email Copied!" : "Copy my email"}
                 icon={<IoCopyOutline />}
                 position="left"
                 otherClasses="!bg-[#161a31]"
