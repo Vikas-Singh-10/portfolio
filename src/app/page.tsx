@@ -7,7 +7,6 @@ import Footer from "@/components/Footer";
 import Grid from "@/components/Grid";
 import Hero from "@/components/Hero";
 import RecentProjects from "@/components/RecentProjects";
-import Testimonial from "@/components/Testimonial";
 
 const Home = () => {
   return (
